@@ -1,13 +1,5 @@
 # -*- coding: UTF-8 -*-
-"""Employee Email Script.
 
-This module allows us to create an email address using employee data from
-a csv file.
-
-Example:
-    $ python employee_email.py
-
-"""
 import os
 import csv
 
@@ -20,15 +12,20 @@ with open(filepath) as csvfile:
     reader = csv.DictReader(csvfile)
     for row in reader:
         # YOUR CODE HERE
-        # Hint: You can use csv.DictReader
-        # This will require a little bit of independent research (by design)
-        # In the real world, you will encounter situations like this
+        email = row["first_name"].lower() + "." + row["last_name"].lower() + "@example.com"
+        new_employee_data.append({"first_name": row["first_name"],
+        "last_name": row["last_name"], 
+        "ssn": row["ssn"],
+        "email": email})
 
 # Grab the filename from the original path
 _, filename = os.path.split(filepath)
 
 # Write updated data to csv file
-csvpath = os.path.join("output", filename)
+csvpath = os.path.join("output", "employee_email.csv")
 with open(csvpath, "w") as csvfile:
     # YOUR CODE HERE
-    # Hint: You can use csv.DictWriter
+    fieldnames = ['first_name', 'last_name', 'ssn', 'email']
+    writer = csv.DictWriter(csvfile, fieldnames= fieldnames)
+    writer.writeheader()
+    writer.writerows(new_employee_data)
