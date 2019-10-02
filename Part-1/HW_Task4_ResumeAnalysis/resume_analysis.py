@@ -8,7 +8,7 @@ import string
 from collections import Counter
 
 # Paths
-resume_path = #YOUR CODE HERE#
+resume_path = os.path.join("Resources", "resume.md")
 
 # Skills to match
 REQUIRED_SKILLS = {"excel", "python", "mysql", "statistics"}
@@ -67,18 +67,17 @@ print(word_count == word_counter)
 print("Top 10 Words")
 print("=============")
 
-# Don't worry about the underscore in front of _word_count
-# It is just convention for internal use only
-# More info here: https://dbader.org/blog/meaning-of-underscores-in-python
-
 # Clean Punctuation
-_word_count = #YOUR CODE HERE hint:
+clean_punc = resume - punctuation
+_word_count = Counter(clean_punc)
+#YOUR CODE HERE hint:
 # Hint: return only words that are not in string.punctuaton
 # Hint: consider using a list comprehension
 
 # Clean Stop Words
-stop_words = ["and", "with", "using", "##", "working", "in", "to"]
-_word_count = #YOUR CODE HERE#
+stop_words = {"and", "with", "using", "##", "working", "in", "to"}
+clean_stop = clean_punc - stop_words
+_word_count = Counter(clean_stop)
 
 # Sort words by count and print the top 10
 sorted_words = []

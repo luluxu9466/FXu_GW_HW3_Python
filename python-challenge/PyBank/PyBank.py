@@ -25,24 +25,26 @@ with open(file_to_load) as financial_data:
     header = next(reader)
 
     # Extract first row to avoid appending to net_change_list
-    # YOUR CODE HERE
+    profit = 0
 
     for row in reader:
 
         # Track the total
-        # YOUR CODE HERE
+        total_months += 1 
 
         # Track the net change
-        # YOUR CODE HERE
+        net_change = int(row[1]) - profit
+        net_change_list.append(net_change)
+        profit = int(row[1])
+        month_of_change.append(row[0])
 
-        # Calculate the greatest increase
-        # YOUR CODE HERE
-            
-        # Calculate the greatest decrease
-        # YOUR CODE HERE
+    # Calculate the greatest increase
+
+    # Calculate the greatest decrease
+
             
 # Calculate the Average Net Change
-# YOUR CODE HERE
+net_monthly_avg = sum(net_change_list) / len(net_change_list)
 
 # Generate Output Summary
 output = (
@@ -55,7 +57,7 @@ output = (
     f"Greatest Decrease in Profits: {greatest_decrease[0]} (${greatest_decrease[1]})\n")
 
 # Print the output (to terminal)
-# YOUR CODE HERE
+print(output)
 
 # Export the results to text file
 # YOUR CODE HERE
