@@ -69,10 +69,10 @@ print("=============")
 
 # Clean Punctuation
 _word_count = dict()
+clean_list = []
 for word in word_count:
     if word not in punctuation:
-        no_punctuation = word.split(',')[0].split('.')[0]
-        _word_count[no_punctuation] = word_count[word]
+        _word_count[word] = word_count[word]
 # Hint: consider using a list comprehension %% not used
 
 # Clean Stop Words
@@ -82,5 +82,17 @@ for word in stop_words:
 
 # Sort words by count and print the top 10
 sorted_words = []
-_word_counter = Counter(_word_count)
-print(_word_counter.most_common(10))
+for word in _word_count:
+    for j in range(len(sorted_words)):
+        if _word_count[word] > _word_count[sorted_words[j]]:
+            sorted_words.insert(j, word)
+            break
+    if _word_count[word] not in sorted_words:
+        sorted_words.append(word)
+
+# Remove punctuations within the words
+for word in sorted_words:
+    word = word.split(',')[0].split('.')[0]
+
+top10 = sorted_words[:10] 
+print(top10)
