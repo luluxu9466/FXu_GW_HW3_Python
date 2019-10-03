@@ -6,7 +6,7 @@ import re
 import os
 
 # Files to load and output (Remember to change these)
-file_to_load = os.path.join("raw_data", "paragraph_1.txt")
+file_to_load = os.path.join("raw_data", "paragraph_3.txt")
 file_to_output = os.path.join("analysis", "paragraph_analysis.txt")
 
 # String variable to hold the paragraph contents
@@ -20,7 +20,7 @@ with open(file_to_load) as txt_data:
 
 # Split the paragraph based on spaces to calculate word count
 word_split = paragraph.split(" ")
-print(word_split)
+# print(word_split)
 word_count = len(word_split)
 
 # Create a list for holding all the letter counts
@@ -36,7 +36,7 @@ for word in word_split:
 avg_letter_count = sum(letter_counts) / float(len(letter_counts))
 
 # Re-split the original paragraph based on punctuation (. ? !)
-sentence_split = re.split("(?<=[.!?]) +", paragraph)
+sentence_split = re.split('(?<=[.!?]) +', paragraph)
 print(sentence_split)
 sentence_count = len(sentence_split)
 
