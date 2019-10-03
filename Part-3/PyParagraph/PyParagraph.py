@@ -6,7 +6,7 @@ import re
 import os
 
 # Files to load and output (Remember to change these)
-file_to_load = os.path.join("raw_data", "paragraph_3.txt")
+file_to_load = os.path.join("raw_data", "paragraph_1.txt")
 file_to_output = os.path.join("analysis", "paragraph_analysis.txt")
 
 # String variable to hold the paragraph contents
@@ -46,16 +46,25 @@ words_per_sentence = []
 for sentence in sentence_split:
 
     # Calculate the number of words in each sentence and add to the list
-    #YOUR CODE HERE
+    words_split = re.split(" ", sentence)
+    wordcount_per_sentence = len(words_split)
+    words_per_sentence.append(wordcount_per_sentence)
 
 # Calculate the avg word count (per sentence)
-#YOUR CODE HERE
-    
-# Generate Paragraph Analysis Output
-#YOUR CODE HERE
+avg_sentence_length = sum(words_per_sentence)/len(words_per_sentence)
 
+# Generate Paragraph Analysis Output
+output = (
+    f'Paragraph Analysis\n'
+    f'-----------------\n'
+    f'Approximate Word Count: {word_count}\n'
+    f'Approximate Sentence Count: {sentence_count}\n'
+    f'Average Letter Count: {avg_letter_count}\n' 
+    f'Average Sentence Length: {avg_sentence_length}'
+)
 # Print all of the results (to terminal)
-#YOUR CODE HERE
+print(output)
     
 # Save the results to analysis text file
-#YOUR CODE HERE
+file = open(file_to_output,"w")
+file.write(output)
