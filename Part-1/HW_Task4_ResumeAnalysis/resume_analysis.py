@@ -68,17 +68,19 @@ print("Top 10 Words")
 print("=============")
 
 # Clean Punctuation
-clean_punc = resume - punctuation
-_word_count = Counter(clean_punc)
-#YOUR CODE HERE hint:
-# Hint: return only words that are not in string.punctuaton
-# Hint: consider using a list comprehension
+_word_count = dict()
+for word in word_count:
+    if word not in punctuation:
+        no_punctuation = word.split(',')[0].split('.')[0]
+        _word_count[no_punctuation] = word_count[word]
+# Hint: consider using a list comprehension %% not used
 
 # Clean Stop Words
-stop_words = {"and", "with", "using", "##", "working", "in", "to"}
-clean_stop = clean_punc - stop_words
-_word_count = Counter(clean_stop)
+stop_words = ["and", "with", "using", "##", "working", "in", "to"]
+for word in stop_words:
+    del _word_count[word]
 
 # Sort words by count and print the top 10
 sorted_words = []
-#YOUR CODE HERE#
+_word_counter = Counter(_word_count)
+print(_word_counter.most_common(10))
