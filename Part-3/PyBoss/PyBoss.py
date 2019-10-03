@@ -87,29 +87,43 @@ with open(file_to_load) as emp_data:
         split_name = row[1].split(" ")
 
         # Then save first and last name in separate lists
-        # YOUR CODE HERE
+        emp_first_names.append(split_name[0])
+        emp_last_names.append(split_name[1])
 
         # Grab DOB and reformat it
-        # YOUR CODE HERE
+        split_DOB = row[2].split("-")
+        year = split_DOB[0]
+        month = split_DOB[1]
+        day = split_DOB[2]
+        DOB_format = month + "/" + day + "/" + year
 
         # Then store it into a list
-        # YOUR CODE HERE
+        emp_dobs.append(DOB_format)
 
         # Grab SSN and reformat it
-        # YOUR CODE HERE
+        split_SSN = row[3].split("-")
+        last4 = split_SSN[2]
+        SSN_format = "***-**-" + last4
                 
         # Then store it into a list
-        # YOUR CODE HERE
+        emp_ssns.append(SSN_format)
 
         # Grab the states and use the dictionary to find the replacement
-        # YOUR CODE HERE
+        state = row[4]
+        state_abbrev = us_state_abbrev[state]
 
         # Then store the abbreviation into a list
-        # YOUR CODE HERE
+        emp_states.append(state_abbrev)
 
 # Zip all of the new lists together
-# YOUR CODE HERE
-
+emp_info = zip(emp_ids, emp_first_names, emp_last_names, emp_dobs, emp_ssns, emp_states)
 
 # Write all of the election data to csv
-# YOUR CODE HERE
+with open(file_to_output, "w", newline="") as datafile:
+    writer = csv.writer(datafile, delimiter =",")
+
+    # Write the header row
+    writer.writerow(["Emp ID","First Name","Last Name","DOB","SSN","State"])
+
+    # Write in zipped rows
+    writer.writerows(emp_info)
